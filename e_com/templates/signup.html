@@ -1,0 +1,37 @@
+{% extends "master.html" %}
+
+{% block title %}Sign Up{% endblock title %}
+
+{% block content %}
+
+<div class="flex justify-center items-center text-center text-2xl md:text-3xl">
+    <form method="POST" action="/create-user/" autocomplete="off" class="shadow-2xl mt-30 mb-10 bg-white w-full py-10 mx-5 sm:mx-20 not-sm:text-2xl rounded-2xl text-center">
+        {% csrf_token %}
+        <h1 class="font-bold mb-2">SIgn Up</h1>
+        <label for="firstname">First Name</label><br>
+        <input type="text" name="firstname" placeholder="First name" class="text-center bg-gray-100 rounded mb-5"><br>
+
+        <label for="last_name">Last name</label><br>
+        <input type="text" name="last_name" placeholder="Last name" class="text-center bg-gray-100 rounded mb-5"><br>
+
+        <label for="user_name" >Username</label><br>
+        <input  name="user_name" required id="user_name" autocomplete="one-time-code" placeholder="Username" class="text-center bg-gray-100 rounded mb-5"><br>
+
+        <label for="email">Email</label><br>
+        <input type="email" name="email" required placeholder="Email" class="text-center bg-gray-100 rounded mb-5"><br>
+
+
+        <label for="pass_word">Password</label><br>
+        <input type="password" name="pass_word" required autocomplete="one-time-code" placeholder="Password" class="text-center bg-gray-100 rounded mb-5"><br>
+
+        <label for="confirm_pass_word">Confirm Password</label><br>
+        <input type="password" name="confirm_pass_word" required autocomplete="one-time-code" placeholder="Password" class="text-center mb-5 bg-gray-100 rounded"><br>
+
+        <input type="submit" value="Create Account" class="text-sm bg-blue-600 text-white hover:bg-white hover:text-blue-600 border p-2 rounded w-50"><br>
+        <a  href="{% url "e_com:login" %}" class="text-sm text-white bg-green-600 border p-2 hover:bg-white rounded hover:text-green-600 w-50">I have an Account</a>
+    </form>
+</div>
+
+
+{% include "footer.html" %}
+{% endblock content %}

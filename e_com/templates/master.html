@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.freepik.com/512/9346/9346243.png">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body class="bg-gray-100 overflow-y-scroll">
+    <nav>{% block nav %}{% endblock nav %}</nav>
+    {% block content %}{% endblock content %}
+    
+    <footer>{% block footer %}{% endblock footer %}</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+{% extends "master.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+
+<div class="flex text-3xl justify-center items-center h-lvh">
+<form method="POST" action="/authentication/" autocomplete="off" class="shadow-2xl bg-white w-full py-10 mx-5 sm:mx-20 not-sm:text-2xl rounded-2xl text-center">
+    {% csrf_token %}
+    <h1 class="font-bold mb-2">Login</h1>
+    {% if error_message %}
+    <p class="text-red-500 bg-red-300 text-sm border font-bold p-2 mx-8 rounded">{{ error_message }}</p>
+    {% endif %}
+    <div class="py-4">
+        <label for="username" class="opacity-60">Username</label><br>
+        <input type="text" name="username" autocomplete="one-time-code" class="py-1 rounded text-center w-70 bg-gray-100"><br>
+    </div>
+
+    <div class="py-4">
+    <label for="password" class="opacity-60">Password</label><br>
+    <input type="password" name="password" autocomplete="one-time-code" class="py-1 rounded text-center w-70 bg-gray-100"><br>
+    </div>
+    <input type="submit" value="Login" class="border rounded p-2 text-sm mt-4 bg-blue-600 text-white hover:text-blue-600 hover:bg-white active:opacity-45 mb-3"><br>
+    <a href="{% url "e_com:signup" %}" class="text-sm p-2 bg-green-600 text-white border rounded hover:bg-white hover:text-green-600">Create account</a>
+</form>
+</div>
+
+{% include "footer.html" %}
+{% endblock content %}

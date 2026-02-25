@@ -1,0 +1,31 @@
+{% extends "master.html" %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+
+<a href="{% url "e_com:home" %}" class="p-3 rounded-full bg-green-500 absolute top-10 left-5">&#127968;</a>
+
+<a href="{% url "e_com:logout" %}" class="float-end text-sm sm:text-2xl mr-5 bg-yellow-400 p-1 rounded font-light text-white mt-10 border hover:bg-white hover:text-yellow-400">Logout</a>
+
+<div class="text-center">
+    <!--Profile pic-->
+    <div class="mt-20 w-full flex justify-center">
+        <a href="/image/{{ user.profile_pic }}"><img src="{{user.profile_pic.url}}" class="size-40 rounded-t-full shadow-md border-4 border-gray-200"></a><br>
+    </div>
+    <!--Name and Bio-->
+    <div class="mt-4">
+        <p class="font-bold text-2xl">{{ user.username }}</p>
+        
+        <p class="opacity-65 p-10 border border-gray-400 mx-5 mt-3 md:mx-20 rounded-2xl">
+            {% if user.bio %}
+            <span>{{ user.bio }}</span>
+            {% else %}
+            <span class="text-3xl font-extrabold opacity-20">No Bio</p>
+            {% endif %}
+            </p>
+       
+    </div>
+</div>
+{% include "footer.html" %}
+{% endblock content %}

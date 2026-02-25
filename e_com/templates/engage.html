@@ -1,0 +1,40 @@
+{% extends "master.html" %}
+
+{% block title %}Engage{% endblock title %}
+
+{% block content %}
+{% include "nav.html" %}
+
+<form method="POST" action="/comment/" class="mt-40 h-auto shadow-2xl mx-4 md:mx-30 items-center justify-center flex rounded-2xl bg-white">
+    {% csrf_token %}
+    <div class="p-10">
+        <label for="comment">Comment</label><br>
+        <textarea name="comment" id="" class="bg-gray-200 w-60 sm:w-100 text-sm" placeholder="Leave a public comment."></textarea><br>
+        <button class="float-end bg-blue-700 text-white px-2 rounded hover:cursor-pointer active:opacity-50">Post</button>
+    </div>
+    
+</form>
+
+<div class="h-auto mb-10 shadow-2xl mt-10 mx-4 md:mx-30 items-center justify-center flex rounded-2xl bg-white">
+    
+    <div class="p-7">
+        <h1 class="font-extrabold text-2xl mt-0">About Interior Masters</h1>
+        <p class="">Interior Masters is a Designing Company located in Nairobi County, Kenya. We are dealers in wardrobe fitting, kitchen fitting door and doorframes, gipsum and many other interior services.</p>
+        <br>
+        <p>We are currently operating in the following areas with plans of expanding further:</p>
+        <ol class="list-decimal pl-10">
+            <li>Nairobi</li>
+            <li>Mombasa</li>
+            <li>Kisumu</li>
+            <li>Narok</li>
+            <li>Malindi</li>
+            <li>Nyeri</li>
+        </ol>
+    </p>
+    </div>
+    
+</div>
+
+{% include "footer.html" %}
+{% endblock content %}
+

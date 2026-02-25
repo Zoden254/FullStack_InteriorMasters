@@ -1,0 +1,30 @@
+{% extends "elements.html" %}
+
+{% block nav %}
+
+    <nav class="z-1 nav-bar fixed top-0 bg-yellow-400 w-full shadow-2xl pt-2">
+        <p class="text-center text-2xl sm:text-4xl font-bold text-white "><span class="float-left m-1 md:text-4xl">Interior Masters</span>
+            {% if not user.is_authenticated %}
+            <div class="float-end text-sm">
+                <a href="/signup/" class="float-left hover:text-blue-500 hover:bg-transparent border border-blue-500 text-sm md:text-lg mr-3 bg-blue-600 p-1 rounded font-light text-white">Sign Up</a>
+                <a href="{% url "e_com:login" %}" class="float-end hover:text-green-500 hover:bg-transparent border border-green-500 text-sm md:text-lg mr-3 bg-green-600 p-1 rounded font-light text-white">Login</a>
+            </div>
+            {% else %}
+
+            <a href="{% url "e_com:profile" %}" title="View Profile"><img src="{{ user.profile_pic.url }}" alt="profile.pic" class="size-10 rounded-full right-1 top-1 mr-3 hover:opacity-70 md:size-16 absolute"></a>
+            
+            {% endif %}
+        </p><br>
+        <ul class="flex ml-3 md:gap-40 p-3 font-medium text-white float-left">
+            
+            <a href="{% url "e_com:home" %}" class="hover:bg-white hover:text-yellow-500 rounded-2xl transition-colors px-3"><li>Home</li></a>
+            <a href="{% url "e_com:samples" %}" class="rounded-2xl  px-3 hover:bg-white hover:text-yellow-500 transition-colors"><li>Samples</li></a>
+            <a href="{% url "e_com:services" %}" class="rounded-2xl  px-3 hover:bg-white hover:text-yellow-500 transition-colors"><li>Services</li></a>
+            <a href="{% url "e_com:engage" %}" class="rounded-2xl  px-3 hover:bg-white hover:text-yellow-500 transition-colors"><li>Engage</li></a>
+            
+        </ul>
+
+        
+    </nav>
+
+{% endblock nav %}
