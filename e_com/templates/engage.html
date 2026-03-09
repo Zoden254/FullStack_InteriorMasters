@@ -4,12 +4,12 @@
 
 {% block content %}
 {% include "nav.html" %}
-
+<!--Add Comment-->
 <form method="POST" action="/comment/" class="mt-40 h-auto shadow-2xl mx-4 md:mx-30 items-center justify-center flex rounded-2xl bg-white">
     {% csrf_token %}
     <div class="p-10">
         <label for="comment">Comment</label><br>
-        <textarea name="comment" id="" class="bg-gray-200 w-60 sm:w-100 text-sm" placeholder="Leave a public comment."></textarea><br>
+        <textarea name="comment" id="" class="bg-gray-200 w-60 sm:w-100 text-sm p-1" placeholder="Leave a public comment."></textarea><br>
         <button class="float-end bg-blue-700 text-white px-2 rounded hover:cursor-pointer active:opacity-50">Post</button>
     </div>
     

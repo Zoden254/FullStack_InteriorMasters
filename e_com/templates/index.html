@@ -3,10 +3,7 @@
 {% block content %}
 <style>
     .hero-section{
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://media.designcafe.com/wp-content/uploads/2023/09/25123635/modern-contemporary-interior-design.jpg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
+
         opacity: 0;
         transform: translateY(-80px);
         animation: fadeIn 1s ease-out forwards;
@@ -42,19 +39,19 @@
     {% include "nav.html" %}
 
     <!--Hero Section-->
-    <div class="pt-20 hero-section transition-opacity shadow-md text-white mb-10">
-        <p class="text-4xl sm:text-7xl font-bold p-5">Welcome {{user.username}}</p>
-        <div class="flex-col py-50 justify-center items-center h-130">
+    <div class="pt-20 hero-section bg-indigo-700 shadow-md text-white mb-10">
+        <p class="sm:text-3xl font-bold mt-7 ml-2">Welcome {{user.username}}</p>
+        <div class="flex-col py-10 justify-center items-center">
             
-            <div class="text-center py-2">
-                <p class="font-bold text-3xl md:text-5xl pb-2">Sitting Room Setup</p>
-                <p class="text-green-400 font-bold">On Offer <span class="text-red-600 line-through">Ksh190,000</span> <span>Ksh150,200</span></p>
+            <div class="text-center py-2 mt-6">
+                <p class="font-bold text-2xl md:text-5xl pb-2">We create your Imagination</p>
+                <p class="text-green-400 font-bold">Quality Designs</p>
                 <p class="text-gray-400 text-sm">Customer Rating <span class="text-amber-300">&#9733;&#9733;&#9733;&#9733;&#9733;</span></p>
             </div>
         
-            <!--Buttons-->
+        <!--Buttons-->
         <div class="flex-col justify-baseline p-5">
-            <a href="{% url "e_com:samples" %}" class="bg-amber-300 p-2 text-white active:opacity-50 rounded-br-3xl items-center flex w-40 gap-2 rounded border border-amber-300 hover:bg-transparent hover:text-amber-300">View Samples <span class="text-3xl">&#10138;</span></a><br>
+            <a href="{% url "e_com:samples" %}" class="p-2 text-white active:opacity-50 rounded-br-3xl items-center flex w-40 gap-2 rounded border border-white hover:bg-white hover:text-indigo-700">View Samples <span class="text-3xl">&#10138;</span></a><br>
             <a href="https://wa.me/+254746590409/?text=Vipi%20mzito.%20Siku%20mob!." class="bg-green-400 p-3 active:opacity-50 text-white rounded-br-3xl items-center flex w-40 gap-2 rounded border border-green-400 hover:bg-transparent hover:text-green-400">WhatsApp <span class="[&>svg]:h-5 [&>svg]:w-5">
             <svg
                 xmlns="http://www.w3.org/2000/svg"

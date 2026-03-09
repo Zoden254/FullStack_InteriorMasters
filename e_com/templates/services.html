@@ -9,15 +9,19 @@
 <div class="mt-30">
 <div class="grid justify-center mx-4 md:grid-cols-4 text-center my-3 gap-y-3.5 sm:gap-x-2">
     {% for service in services %}
+    
     <div class="bg-white my-5 shadow rounded hover:shadow-md overflow-hidden">
+        <a href="{% url "e_com:service_view" service.id %}">
         <img src="{{service.thumbnail.url}}" alt="" class="size-70 rounded w-100 h-60" >
         <p class="font-bold pt-2">{{ service.name }}</p>
         {% if service.cost_on_offer %}
-        <p class="">On offer: <span class="line-through text-red-600">{{ service.cost_range }}</span></p>
+        <p class="mb-3">On offer: <span class="line-through text-red-600">{{ service.cost_range }}</span></p>
         {% else %}
-        <p class="">Cost: <span class="text-green-500">{{service.cost_range}}</span></p>
+        <p class="mb-3">Cost: <span class="text-green-500 ">{{service.cost_range}}</span></p>
         {% endif %}
+        </a>
     </div>
+    
    {% endfor %}
 </div>
 </div>

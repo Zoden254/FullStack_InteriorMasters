@@ -1,0 +1,19 @@
+{% extends "master.html" %}
+
+{% block title %}{{ service.name }}{% endblock title %}
+
+{% block content %}
+
+<h1 class="bg-indigo-600 shadow text-center p-3 font-bold text-3xl text-white">Service View</h1>
+
+<div class="flex justify-center items-center w-full bg-indigo-500">
+    <div class="flex-col m-4 justify-center items-center text-center">
+        <img src="{{service.thumbnail.url}}" class="size-100 w-fit rounded not-sm:size-60 not-sm:w-full">
+        <p class="font-bold text-3xl">{{ service.name }}</p>
+        {% if service.additional_info %}
+        <p>{{ service.additional_info }}</p>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock content %}

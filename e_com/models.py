@@ -13,6 +13,16 @@ class Service(models.Model):
     def __str__(self):
         return self.name 
     
+class Sample(models.Model):
+    sample_pic = models.ImageField(null=True, blank=True, default='blank.jpeg')
+    sample_name = models.CharField(max_length=50)
+    price_on_offer = models.CharField(max_length=20)
+    customer_rating = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.sample_name
+
+
 class User(AbstractUser):
     profile_pic = models.ImageField(blank=True, default="blank_profile.jpg")
     bio = models.TextField(null=True, blank=True)

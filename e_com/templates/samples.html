@@ -8,13 +8,15 @@
 {% include "nav.html" %}
 
 <div class="mt-30">
+{% for sample in samples %}
+<div class="mt-10">
     <div class="mx-4 bg-white mb-10 shadow-2xl rounded-2xl text-center sm:mx-30">
         <div class="mt-8 text-center flex items-center justify-center">
-            <img class="w-full rounded-2xl sm:h-100 sm:size-200" src="https://i.ytimg.com/vi/vZHPJPRNnQA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&amp;rs=AOn4CLDtl77LijjrTxI3e2HoqBl-KNyJEQ" alt="hero">
+            <img class="w-full rounded-2xl sm:h-100 sm:size-200" src="{{ sample.sample_pic.url }}" alt="sample">
             
         </div>
         <div class="text-center py-2">
-            <p class="font-bold sm:text-3xl">Classic Room setup</p>
+            <p class="font-bold sm:text-3xl">{{ sample.sample_name }}</p>
             <p class="text-green-400 text-sm">On Offer <span class="text-red-600 line-through">$90</span> $<span>80</span></p>
             <p class="text-gray-400 text-sm">Customer Rating <span class="text-amber-300">&#9733;&#9733;&#9733;&#9733;&#9733;</span></p>
         </div>
@@ -23,6 +25,8 @@
             <a href="#" class="bg-blue-500 hover:bg-white hover:text-blue-500 border p-2 px-5 rounded text-white">Details</a>
         </div>
     </div>
+</div>
+{% endfor %}
 </div>
 {% include "footer.html" %}
             

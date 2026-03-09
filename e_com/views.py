@@ -16,8 +16,10 @@ def home(request):
     }
     return render(request, 'index.html', context)
 
-def SamplesList(request):
-    return render(request, "samples.html")
+class SamplesList(generic.ListView):
+    model = Sample
+    template_name = 'samples.html'
+    context_object_name = 'samples'
 
 class ServicesList(generic.ListView):
     model = Service
@@ -41,7 +43,7 @@ def authentication(request):
     else:
         return render(request, 'login.html', {'error_message' : "User not found"})
 
-@login_required
+@login_required(login_url='/login/')
 def comment(request):
     if request.user.is_authenticated:
         comment = request.POST['comment']
@@ -52,12 +54,14 @@ def comment(request):
         else:
             return HttpResponseRedirect(reverse("e_com:engage"))
     else:
-        return HttpResponseRedirect(reverse('e_com:home'))
+        return HttpResponseRedirect(reverse('e_com:login'))
+
+        
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('e_com:home'))
 
-@login_required
+@login_required(login_url='/login/')
 def profile_view(request):
     return render(request, 'profile.html')
 
@@ -66,4 +70,16 @@ def signup(request):
     return render(request, 'signup.html')
 
 def create_user_view(request):
+    username = request.POST['user_name']
+    password = request.POST['pass_word']
+    password2 = request.POST['confirm_pass_word']
+    if password == password2:
+        User.objects.create_user(username=username, password=password)
+
+
     return HttpResponseRedirect(reverse('e_com:login'))
+
+def service_view(request, id):
+    service = Service.objects.get(id=id)
+    return render(request, 'service_view.html', {'service': service})
+
