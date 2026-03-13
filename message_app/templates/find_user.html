@@ -1,0 +1,23 @@
+{% extends "master.html" %}
+
+{% block title %}Messanger{% endblock title %}
+
+{% block content %}
+<h1 class="bg-indigo-500 text-white text-center text-2xl p-3">Find User</h1>
+
+<p>Sender: {{ user.username }}</p>
+<p style="color:green;">You'll be redirected to the chat section as soon as you provide the correct user number.</p>
+{% if error_message %}
+<p class="bg-red-300 border w-30 border-red-700">{{error_message}}</p>
+{% endif %}
+<div class="flex m-4 justify-center items-center h-full w-full">
+<form method="GET" class="bg-white">
+    {% csrf_token %}
+    <label for="receiver_no">Receiver's No</label><br>
+    <input type="text" name="receiver_no" class="border"><br>
+    <br>
+    <input type="submit" value="Find" class="bg-green-500 text-white p-2">
+
+</form>
+</div>
+{% endblock content %}
