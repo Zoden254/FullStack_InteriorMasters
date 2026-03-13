@@ -26,6 +26,9 @@ class ServicesList(generic.ListView):
     template_name = 'services.html'
     context_object_name = 'services'
 
+    def get_queryset(self):
+        return Service.objects.order_by('-id')
+
 def about(request):
     return render(request, 'engage.html')
 
@@ -76,10 +79,40 @@ def create_user_view(request):
     if password == password2:
         User.objects.create_user(username=username, password=password)
 
-
     return HttpResponseRedirect(reverse('e_com:login'))
 
+#@login_required(login_url='/login/')
 def service_view(request, id):
     service = Service.objects.get(id=id)
-    return render(request, 'service_view.html', {'service': service})
+    if request.user.is_authenticated:
+        my_cart = Cart.objects.get(user=request.user)
+    else:
+        my_cart = {}
+    return render(request, 'service_view.html', {'service': service, 'my_cart': my_cart})
 
+@login_required(login_url='/login/')
+def add_item_to_cart(request, id):
+    user = request.user
+    item = Service.objects.get(id=id)
+    item_to_cart, created = Cart.objects.get_or_create(user=user)
+    item_to_cart.item.add(item)
+    
+    return HttpResponseRedirect(reverse('e_com:services'))
+
+@login_required(login_url='/login/')
+def cart_view(request):
+    user = request.user
+    my_cart = Cart.objects.get(user=user)
+    #Here I extract the service model from the cart model.
+    cart_items = my_cart.item.order_by
+    #cart_items = user.cart.item.all()
+
+    return render(request, 'cart.html', {'items' : cart_items})
+
+
+def remove_from_cart(request, name):
+    user = request.user
+    from_service = Service.objects.get(name=name)
+    cart = Cart.objects.get(user=user)
+    cart.item.remove(from_service)
+    return HttpResponseRedirect(reverse('e_com:cart_view'))

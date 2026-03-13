@@ -16,4 +16,7 @@ urlpatterns = [
     path('signup/', views.signup, name="signup"),
     path('create-user/', views.create_user_view, name="create-user"),
     path('services/<int:id>/', views.service_view, name="service_view"),
+    path('add-item-to-cart/<int:id>/', views.add_item_to_cart, name="add_to_cart"),
+    path('my-cart/', views.cart_view, name="cart_view"),
+    path('remove-from-cart/<str:name>/', views.remove_from_cart, name="remove_from_cart")
 ]

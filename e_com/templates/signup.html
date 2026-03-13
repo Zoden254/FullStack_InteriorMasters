@@ -27,8 +27,8 @@
         <label for="confirm_pass_word">Confirm Password</label><br>
         <input type="password" name="confirm_pass_word" required autocomplete="one-time-code" placeholder="Password" class="text-center mb-5 bg-gray-100 rounded"><br>
 
-        <input type="submit" value="Create Account" class="text-sm bg-blue-600 text-white hover:bg-white hover:text-blue-600 border p-2 rounded w-50"><br>
-        <a  href="{% url "e_com:login" %}" class="text-sm text-white bg-green-600 border p-2 hover:bg-white rounded hover:text-green-600 w-50">I have an Account</a>
+        <input type="submit" value="Create Account" class="text-sm bg-blue-600 text-white hover:bg-white hover:text-blue-600 border p-2 rounded w-40"><br>
+        <p class="text-sm p-3">I already have an account, <a  href="{% url "e_com:login" %}" class="text-sm text-blue-500">Login</a></p>
     </form>
 </div>
 

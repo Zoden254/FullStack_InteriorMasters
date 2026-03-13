@@ -4,16 +4,52 @@
 
 {% block content %}
 
-<h1 class="bg-indigo-600 shadow text-center p-3 font-bold text-3xl text-white">Service View</h1>
+{% include "nav.html" %}
 
-<div class="flex justify-center items-center w-full bg-indigo-500">
-    <div class="flex-col m-4 justify-center items-center text-center">
-        <img src="{{service.thumbnail.url}}" class="size-100 w-fit rounded not-sm:size-60 not-sm:w-full">
-        <p class="font-bold text-3xl">{{ service.name }}</p>
+<h1 class="bg-indigo-600 pt-30 shadow text-center p-3 font-bold md:text-3xl text-white">Service View</h1>
+
+<div class="flex justify-center items-center w-full">
+    <div class="bg-gray-200 p-5 flex-col m-4 justify-center items-center text-center">
+        <img src="{{service.thumbnail.url}}" class="size-130 w-full rounded not-sm:size-60 not-sm:w-full">
+        <p class="font-bold text-3xl p-3">{{ service.name }}</p>
+        
         {% if service.additional_info %}
         <p>{{ service.additional_info }}</p>
         {% endif %}
+        <p class="mb-4 p-3 shadow rounded-2xl flex">Price range: 
+            <span class="text-green-500 flex">{{ service.cost_range }}
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" >
+                <path d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 
+                4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
+                </svg>
+            </span>
+        </p>
+        {% if user.is_authenticated %}
+            {% if service not in my_cart.item.all %}
+            <a href="{% url "e_com:add_to_cart" service.id %}" class="bg-indigo-600 rounded text-white border p-2 hover:bg-white hover:text-indigo-600">Add to Cart &#128722;</a>
+            {% else %}
+            <a href="{% url "e_com:cart_view" %}" class="bg-green-500 text-white p-2 rounded">Item already in Cart✅</a>
+            {% endif %}
+        {% else %}
+            <a href="{% url "e_com:login" %}" class="bg-blue-600 rounded p-2 text-white">Login to proceed</a>
+        {% endif %}
+    </div>
+        
+</div>
 
+<div class="m-2 text-center flex flex-col items-center">
+    <h2 class="font-bold text-2xl mt-10">Our Team</h2>
+    <div class="flex flex-col items-center lg:grid m-5 lg:grid-cols-4">
+    {% for worker in service.worker_set.all %}
+        <div class="shadow sm:m-10 m-5 w-fit rounded">
+            <img class="size-40 rounded-full p-2" src="{{ worker.profile_pic.url }}" alt="Pic">
+            <p class="">{{ worker.first_name }} {{ worker.last_name}}</p>
+            <p class="opacity-70">{{ worker.get_role_display }}</p>
+        </div>
+    {% endfor %}
     </div>
 </div>
+
+{% include "footer.html" %}
 {% endblock content %}

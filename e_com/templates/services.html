@@ -10,16 +10,26 @@
 <div class="grid justify-center mx-4 md:grid-cols-4 text-center my-3 gap-y-3.5 sm:gap-x-2">
     {% for service in services %}
     
-    <div class="bg-white my-5 shadow rounded hover:shadow-md overflow-hidden">
+    <div class="bg-white my-5 mx-5 shadow rounded-b-2xl rounded hover:shadow-lg overflow-hidden text-nowrap m-1">
         <a href="{% url "e_com:service_view" service.id %}">
-        <img src="{{service.thumbnail.url}}" alt="" class="size-70 rounded w-100 h-60" >
+        <img src="{{service.thumbnail.url}}" alt="" class=" rounded w-100 h-50" >
         <p class="font-bold pt-2">{{ service.name }}</p>
         {% if service.cost_on_offer %}
         <p class="mb-3">On offer: <span class="line-through text-red-600">{{ service.cost_range }}</span></p>
         {% else %}
-        <p class="mb-3">Cost: <span class="text-green-500 ">{{service.cost_range}}</span></p>
+        <p class="m-2">Cost: <span class="text-green-500 ">{{service.cost_range}}</span></p>
         {% endif %}
+        {% if service.additional_info %}
+        <div class="flex items-center justify-center">
+            <div class="w-60 ml-3 overflow-hidden">
+                <p class="text-nowrap text-center text-sm opacity-60 mb-3">{{ service.additional_info }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <button class="p-2 bg-blue-600 object-bottom hover:cursor-pointer hover:bg-white rounded-2xl hover:text-blue-500 border w-full text-white ">Expand</button>
         </a>
+    
     </div>
     
    {% endfor %}
