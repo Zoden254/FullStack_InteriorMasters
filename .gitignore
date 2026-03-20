@@ -4,10 +4,9 @@ db.sqlite3
 *.pyc
 
 
-tailwind.config.js
-
 venv/
 .env
 
+tailwind.config.js
 .django_tailwind_cli
 tailwindcss.exe

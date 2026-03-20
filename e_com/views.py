@@ -42,6 +42,7 @@ def login_view(request):
 
         user = authenticate(request, username=user_name, password=pass_word)
         if user is not None:
+        
             login(request, user)
             next_url = request.POST.get('next')
 
@@ -63,6 +64,7 @@ def comment(request):
         if comment != "":
             new_comment = request.user.comment_set.create(comment=comment)
             new_comment.save()
+            messages.info(request, "Comment posted.")
             return HttpResponseRedirect(reverse('e_com:home'))
         else:
             return HttpResponseRedirect(reverse("e_com:engage"))
@@ -82,6 +84,7 @@ def signup(request):
     if request.user.is_authenticated:
         logout(request)
     return render(request, 'signup.html')
+
 
 def create_user_view(request):
     firstname = request.POST['firstname']
@@ -131,8 +134,9 @@ def add_item_to_cart(request, id):
     item = Service.objects.get(id=id)
     item_to_cart, created = Cart.objects.get_or_create(user=user)
     item_to_cart.item.add(item)
-    
+    messages.success(request, "Item added to Cart successfully.")
     return HttpResponseRedirect(reverse('e_com:services'))
+
 
 @login_required(login_url='/login/')
 def cart_view(request):
@@ -153,7 +157,9 @@ def remove_from_cart(request, name):
     from_service = Service.objects.get(name=name)
     cart = Cart.objects.get(user=user)
     cart.item.remove(from_service)
+    messages.info(request, "Item removed from Cart successfully.")
     return HttpResponseRedirect(reverse('e_com:cart_view'))
+
 
 def apply_service(request, service_id):
     service = Service.objects.get(id=service_id)    

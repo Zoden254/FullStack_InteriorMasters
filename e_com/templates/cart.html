@@ -7,6 +7,23 @@
 
 {% include "back_home.html" %}
 
+<div class="fixed top-20 text-center w-full">
+{% if messages %}
+{% for message in messages %}
+    <p class="{% if message.tags == 'error' %}bg-red-400 text-red-800 
+                {% elif message.tags == 'success' %}bg-green-400 text-green-800
+                {% elif message.tags == 'info' %}bg-blue-400 text-blue-800{% endif %}
+                    p-2 rounded text-center border m-2 mx-10">{{message}}
+                <button class="float-right underline hover:cursor-pointer" onclick="this.parentElement.remove()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                </button>
+        </p>
+{% endfor %}
+{% endif %}
+</div>
+
 <!--The item context is just a service model-->
 
 {% if not items %}
