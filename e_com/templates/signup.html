@@ -1,0 +1,63 @@
+{% extends "master.html" %}
+
+{% block title %}Sign Up{% endblock title %}
+
+{% block content %}
+{% include "back_home.html" %}
+
+<div class="flex justify-center  items-center  text-2xl">
+    <form method="POST" action="/create-user/" autocomplete="off" class="mt-10 shadow  mb-10 w-full mx-8 sm:mx-20 py-10 rounded-2xl text-center bg-white">
+        {% csrf_token %}
+        <h1 class="font-bold mb-2 ">SIgn Up</h1>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="bg-red-400 border text-red-800 p-2 mx-24 rounded text-sm">{{message}}</p>
+            {% endfor %}
+        {% endif %}
+<div class="grid lg:grid-cols-2 font-bold text-md opacity-70">
+    <div>        
+        <label for="firstname">First Name</label><br>
+        <input type="text" name="firstname" placeholder="eg. Denzel" class="pl-2 bg-gray-100 rounded-2xl mb-5 mx-4 border"><br>
+
+    </div>
+    <div>        
+        <label for="last_name">Last name</label><br>
+        <input type="text" name="last_name" placeholder="Last name" class="pl-2 bg-gray-100 rounded-2xl mb-5 mx-4 border"><br>
+    </div>
+    
+
+    <div>        
+        <label for="user_name" >Username</label><br>
+        <input  name="user_name" required id="user_name" autocomplete="one-time-code" placeholder="eg. Zoden" class="bg-gray-100 pl-2 rounded-2xl mb-5 mx-4 border"><br>
+    </div>
+
+    <div>        
+        <label for="email">Email</label><br>
+        <input type="email" name="email" required placeholder="xyz@gmail.com" class="pl-2 bg-gray-100 rounded-2xl mx-4 mb-5 border"><br>
+    </div>
+    <div>       
+        <label for="pass_word">Password</label><br>
+        <input type="password" name="pass_word" required autocomplete="one-time-code" placeholder="Password" class="pl-2 bg-gray-100 rounded-2xl mb-5 mx-4 border"><br>
+    </div>
+
+    <div>
+        <label for="confirm_pass_word">Confirm Password</label><br>
+        <input type="password" name="confirm_pass_word" required autocomplete="one-time-code" placeholder="Password" class="pl-2 mb-5 bg-gray-100 rounded-2xl mx-4 border"><br>
+    </div>
+
+    <div>
+        <label for="user_number">User number</label><br>
+        <input type="text" name="user_number" required autocomplete="one-time-code" placeholder="07XXXXXXXX" class="pl-2 mb-5 bg-gray-100 rounded-2xl mx-4 border"><br>
+    </div>
+</div>
+
+    
+    <input type="submit" value="Create Account" class="text-sm bg-blue-600 text-white hover:bg-white hover:text-blue-600 border p-2 rounded w-50"><br>
+    <p class="text-sm p-3">I already have an account, <a  href="{% url "e_com:login" %}" class="text-sm text-blue-500">Login</a></p>
+    
+    </form>
+</div>
+
+
+{% include "footer.html" %}
+{% endblock content %}

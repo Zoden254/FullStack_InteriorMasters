@@ -1,0 +1,42 @@
+{% extends "master.html" %}
+{% load humanize %}
+
+{% block title %}My Cart{% endblock title %}
+
+{% block content %}
+
+{% include "back_home.html" %}
+
+<!--The item context is just a service model-->
+
+{% if not items %}
+<div class="h-100 w-full flex flex-col justify-center items-center">
+    <p class="text-9xl">&#128722;</p>
+    <p class="text-2xl p-2 font-bold text-indigo-500">Cart Empty</p>
+    <p class="opacity-60">Items that you add to cart will appear here.</p>
+
+</div>
+{% endif %}
+
+<div class="grid md:grid-cols-2">
+    {% for item in items %}
+    <div class="bg-white m-6 shadow p-3 rounded-2xl">
+        <div class="flex rounded">
+            <img src="{{ item.thumbnail.url }}" alt="Thumbnail" class="sm:size-40 size-20 w-full sm:w-fit rounded">
+            <div class="flex flex-col p-2">
+                <p class="">{{ item.name }}</p>
+                <p class="text-sm opacity-60 ">{{ item.additional_info }}</p>
+            </div>
+            
+        </div>
+        <p class="text-md text-center text-green-500 m-3"> Ksh {{ item.cost_range|intcomma }}</p>
+        <div class="inline">
+            <a href="{% url "e_com:apply_service" item.id %}"><button class="mx-5 bg-indigo-600 text-white border p-2 rounded w-30 hover:cursor-pointer hover:bg-white hover:text-indigo-600">Apply</button></a>
+            <a href="{% url "e_com:remove_from_cart" item.name %}"><button class="bg-red-500 w-30 hover:cursor-pointer p-2 rounded text-white h-fit hover:bg-transparent border hover:text-red-500">Remove</button></a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% include "footer.html" %}
+{% endblock content %}

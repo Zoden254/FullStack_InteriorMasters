@@ -1,0 +1,60 @@
+{% extends "master.html" %}
+{% load humanize %}
+
+{% block title %}Apply for {{ service.name }}{% endblock title %}
+
+{% block content %}
+
+{% include "back_home.html" %}
+
+
+<div class="flex flex-col items-center justify-center bg-gray-200">
+    <img src="{{service.thumbnail.url}}" class="sm:size-56 size-40 w-fit sm:w-fit rounded-2xl m-4 shadow-md ">
+</div>
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="flex flex-col justify-center items-center">
+            {% if messages %}
+                {% for message in messages %}
+                <p class="bg-red-400 border rounded text-red-800 p-1">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+            <div class="grid sm:grid-cols-2 m-5 gap-x-5 font-bold opacity-60 ">
+                <div>
+                    <p>Customer</p>
+                        <p class="border-2 w-70 rounded-2xl p-2">{{user.username}}</p><br>
+                </div>
+
+                <div>
+                    <p>Service</p>
+                        <p class="border-2 w-70 rounded-2xl p-2">{{service.name}}</p><br>
+                </div>
+                
+                <div>
+                    <p>Total Cost</p>
+                        <p class="border-2 w-70 rounded-2xl p-2">Ksh {{service.cost_range|intcomma}}</p><br>
+                </div>
+                
+                <div>
+                <p>Minimum Deposit</p>
+                    <p class="border-2 w-70 rounded-2xl p-2">Ksh {{min_deposit|intcomma}}</p><br>
+                </div>
+
+                <div>
+                    <label for="deposit" class="opacity-100">Deposit</label><br>
+                    <input type="text" name="deposit" class="border-2 rounded-2xl p-2 w-70 opacity-100" placeholder="To be debited to your account" required><br><br>
+                </div>
+
+                <div>
+                    <label for="password">Password</label><br>
+                    <input type="password" name="password" autocomplete="one-time-code"  class="border-2 rounded-2xl p-2 w-70" placeholder="Account Password" maxlength=10 required><br>
+                </div>
+            </div>
+        
+            <button type="submit" class="bg-indigo-600 mb-5 text-white hover:bg-white border hover:text-indigo-600 p-2 rounded">Proceed to payment</button>
+        </div>
+        
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends "master.html" %}
+{% block title %}Messanger{% endblock title %}
+{% block content %}
+
+{% include "back_home.html" %}
+
+
+
+<div class="flex m-5 justify-center items-center">
+    <a href="{% url "message_app:find_user" %}" class="flex bg-gray-300 p-2 rounded">
+    <p>New Chat</p>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+    </a>
+</div>
+
+
+{% for chat in recent_chats %}
+<a href="{% url "message_app:chat" chat.receiver__user_number %}">
+<div class="bg-indigo-600 shadow-md rounded-3xl sm:mx-30 text-white m-10 p-5">
+    <div class="flex">
+        
+        <span class="mr-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+        </span>
+        <p>{{chat.receiver__username}}</p><br>
+    </div>
+    <p class="float-right text-white text-sm w-full text-end">Last text: {{ chat.timer }}</p>
+</div>
+</a>
+
+{% endfor %}
+
+{% endblock content %}

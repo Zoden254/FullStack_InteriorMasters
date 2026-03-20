@@ -1,0 +1,120 @@
+{% extends "master.html" %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+<style>
+    .hero-section{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1)), url("https://img.freepik.com/premium-photo/nairobi-city-county-kenyas-capital-cityscapes-skyline-skyscrapers-highrise-buildings-architecture_257688-1524.jpg?semt=ais_hybrid&w=740&q=80");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeIn 1s ease-out forwards;
+        
+    }   
+
+
+    @keyframes fadeIn {
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
+
+    .nav-bar{
+        
+        transform: translateY(-20px);
+        animation: navfadein 1s ease-out forwards;
+    }
+    @keyframes navfadein {
+        to{
+            transform: translateY(0);
+            
+        }
+    }
+
+    
+</style>
+
+
+<body class="bg-gray-100">
+    
+    {% include "nav.html" %}
+    
+    <!--Hero Section-->
+    <div class="lg:w-full lg:flex">
+    <div class="pt-20 hero-section bg-indigo-700 shadow-md text-white mb-10 lg:w-200 lg:rounded-br-3xl lg:top-40 lg:justify-center items-center">
+        <p class="sm:text-3xl font-bold mt-7 ml-2">Welcome {{user.first_name}}</p>
+        <div class="flex-col py-10 justify-center items-center">
+            
+            <div class="text-center py-2 mt-6">
+                <p class="font-bold text-2xl md:text-5xl pb-2">We create your Imagination</p>
+                <p class="text-green-400 font-bold">Quality Designs</p>
+                <p class="text-green-500 text-sm">Customer Rating <span class="text-amber-300">&#9733;&#9733;&#9733;&#9733;&#9733;</span></p>
+            </div>
+        
+        <!--Buttons-->
+        <div class="flex-col justify-baseline p-5">
+            <a href="{% url "e_com:services" %}" class="p-2 text-white active:opacity-50 rounded-br-3xl items-center flex w-40 gap-2 rounded border border-white hover:bg-white hover:text-indigo-700">Our Services 
+                <span class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                    </svg>
+
+                </span>
+            </a><br>
+            <a href="https://wa.me/+254746590409/?text=Vipi%20mzito.%20Siku%20mob!." class="bg-green-400 p-3 active:opacity-50 text-white rounded-br-3xl items-center flex w-40 gap-2 rounded border border-green-400 hover:bg-transparent hover:text-green-400">WhatsApp <span class="[&>svg]:h-5 [&>svg]:w-5">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 448 512">
+                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                <path
+                d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+            </svg>
+            </span>
+            </a>
+        </div>
+        </div>
+        
+    </div>
+
+    <div class="mt-30 opacity-80 text-2xl hidden lg:block w-80 text-center ml-30">
+        <p><span class="font-bold">Remark: </span>"We provide teams with highly technically trained personnels. Not only do they perform at their best, but serve you with respect 
+            and dignity", Company CEO, Jackson Malika.</p>
+        <p class="text-nowrap m-2">We are moving international</p>
+    </div>
+    
+    </div>
+ 
+    
+    <!--Comment section-->
+    <div class="flex-col justify-center items-center shadow-md p-5 bg-white mx-4 mt-10 sm:mx-30">
+        <p class="font-extrabold">Customer Reviews & Comments</p>
+        
+        <div class="overflow-y-scroll h-100">
+            
+
+            {% for unit in comments %}
+            <div class="flex gap-x-2 mt-5">
+                <img src="{{ unit.username.profile_pic.url }}" alt="profile.pic" class="size-10 rounded-full">
+                <div class="bg-gray-200 rounded-bl-2xl w-40 sm:w-80 rounded-r-2xl">
+                    <p class="text-sm m-0 font-bold">{{ unit.username }}</p>
+                    <p class="ml-2">{{unit.comment}}</p>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+    <a href="{% url "wallet:wallet" %}" class="bg-green-500 fixed bottom-10 right-8 text-white p-3 text-4xl rounded-full" title="Wallet">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3" />
+        </svg>
+
+    </a>
+    {% endif %}
+    {% include "footer.html" %}
+
+{% endblock content %}

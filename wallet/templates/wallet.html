@@ -1,0 +1,21 @@
+{% extends "master.html" %}
+{% load humanize %}
+{% block title %}My Wallet{% endblock title %}
+
+{% block content %}
+{% include "back_home.html" %}
+<div class="flex shadow bg-blue-100 m-10 flex-col justify-center items-center">  
+    <p class=" opacity-50 font-extrabold">My Wallet</p>
+    <p class="m-3 font-bold  opacity-50">{{wallet.user.first_name}} {{ wallet.user.last_name }}</p>
+    <div class="shadow bg-indigo-400 text-white font-bold rounded-2xl p-10">
+        <p class="">Balance Ksh.{{ wallet.balance|intcomma }}</p>
+    </div>
+
+    <div class="grid grid-cols-3  gap-2 w-fit sm:gap-5 my-5 text-center">
+        <a href="{% url "wallet:deposit" %}" class="bg-green-500 p-2 rounded text-white hover:bg-transparent border hover:text-green-500">Deposit</a>
+        <a href="#" class="bg-green-500 p-2 rounded text-white hover:bg-transparent border hover:text-green-500">Withdraw</a>
+        <a href="#" class="bg-green-500 p-2 rounded text-white hover:bg-transparent border hover:text-green-500">Transfer</a>
+    </div>
+</div>
+
+{% endblock content %}

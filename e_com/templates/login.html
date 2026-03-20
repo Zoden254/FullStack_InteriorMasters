@@ -1,0 +1,38 @@
+{% extends "master.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+{% include "back_home.html" %}
+
+<div class="flex text-2xl justify-center items-center mt-10">
+
+<form method="POST" class="shadow-2xl bg-white w-full py-10 mx-5 sm:mx-20  rounded-2xl text-center">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.GET.next }}">
+
+    <h1 class="font-bold mb-2">Login</h1>
+
+    {% if messages %}
+            {% for message in messages %}
+                <p class="bg-red-400 border text-red-800 p-2 mx-24 rounded text-sm">{{message}}</p>
+            {% endfor %}
+    {% endif %}
+
+    <div class="py-4">
+        <label for="username" class="font-bold opacity-60 ">Username</label><br>
+        <input type="text" name="username" class="py-1 rounded-2xl border  text-center w-70 bg-gray-100"><br>
+    </div>
+
+    <div class="py-4">
+    <label for="password" class="opacity-60 font-bold">Password</label><br>
+    <input type="password" name="password" class="py-1 rounded-2xl border  text-center w-70 bg-gray-100"><br>
+    </div>
+
+    <input type="submit" value="Login" class="border rounded p-2 text-sm mt-4 bg-blue-600 text-white hover:text-blue-600 hover:bg-white active:opacity-45 mb-3 w-40"><br>
+    <p class="text-sm">I have no account, <a href="{% url "e_com:signup" %}" class="text-sm opacity-100 text-blue-600">Create account</a><p>
+</form>
+</div>
+
+{% include "footer.html" %}
+{% endblock content %}

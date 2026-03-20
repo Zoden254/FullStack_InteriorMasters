@@ -1,0 +1,13 @@
+#python / Django
+__pycache__/
+db.sqlite3
+*.pyc
+
+
+tailwind.config.js
+
+venv/
+.env
+
+.django_tailwind_cli
+tailwindcss.exe

@@ -1,0 +1,34 @@
+{% extends "master.html" %}
+
+{% block title %}Messanger{% endblock title %}
+
+{% block content %}
+{% include "back_home.html" %}
+
+</h1>
+
+
+
+<p class="text-sm m-3">Sending as:<span class="text-green-500"> {{ user.username }}</span></p>
+
+
+<div class="flex m-4 justify-center items-center h-full">
+<form method="GET" class="bg-white rounded-3xl shadow-md text-2xl p-20">
+    {% csrf_token %}
+    {% if error_message %}
+        <p class="bg-red-300 border text-sm rounded text-red-600 text-center m-2 border-red-700">{{error_message}}</p>
+    {% endif %}
+    <label for="receiver_no" class="opacity-50 font-bold text-center text-md">Receiver's Number</label><br>
+    <input type="text" name="receiver_no" class="border-2 w-60 rounded-3xl font-bold px-2 opacity-80 border-gray-300" required maxlength=10><br>
+    <br>
+    <button type="submit" class="bg-green-500 flex rounded hover:text-green-500 hover:bg-white border justify-center text-sm font-bold items-center text-white p-2">Find 
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+        </span>
+    </button>
+     
+</form>
+</div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "master.html" %}
+
+{% block title %}Deposit{% endblock title %}
+
+{% block content %}
+{% include "back_home.html" %}
+<form method="POST" class="p-10 w-fit">
+    {% csrf_token %}
+    <label for="amount">Amount</label>
+    <br>
+    <input type="number" name="amount" class="border rounded-2xl "> 
+    <br>
+
+    <label for="phone">M-Pesa number</label>
+    <br>
+    <input name="phone" type="number" class="border rounded-2xl">
+    <br>
+    
+    <button type="submit" class="bg-green-500 text-white p-2 m-2 rounded float-right">Deposit</button>
+</form>
+{% endblock content %}
