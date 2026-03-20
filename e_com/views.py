@@ -183,7 +183,3 @@ def apply_service(request, service_id):
 def success_page(request):
     return render(request, "success_purchase.html")
 
-@login_required
-def wallet(request):
-    wallet, created = Wallet.objects.get_or_create(user=request.user)
-    return render(request, 'wallet.html', {'wallet':wallet})

@@ -4,18 +4,34 @@
 
 {% block content %}
 {% include "back_home.html" %}
+
+<div class="fixed top-20 w-full">
+{% if messages %}
+    {% for message in messages %}
+        <p class="{% if message.tags == 'error' %}bg-red-400 text-red-800 
+                {% elif message.tags == 'success' %}bg-green-400 text-green-800{% endif %}
+                    p-2 rounded text-center border m-2 mx-10">{{message}}
+                <button class="float-right underline hover:cursor-pointer" onclick="this.parentElement.remove()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                </p>
+    {% endfor %}
+{% endif %}
+
 <div class="flex shadow bg-blue-100 m-10 flex-col justify-center items-center">  
     <p class=" opacity-50 font-extrabold">My Wallet</p>
     <p class="m-3 font-bold  opacity-50">{{wallet.user.first_name}} {{ wallet.user.last_name }}</p>
     <div class="shadow bg-indigo-400 text-white font-bold rounded-2xl p-10">
-        <p class="">Balance Ksh.{{ wallet.balance|intcomma }}</p>
+        <p class="">Balance Ksh{{ wallet.balance|intcomma }}</p>
     </div>
 
     <div class="grid grid-cols-3  gap-2 w-fit sm:gap-5 my-5 text-center">
         <a href="{% url "wallet:deposit" %}" class="bg-green-500 p-2 rounded text-white hover:bg-transparent border hover:text-green-500">Deposit</a>
-        <a href="#" class="bg-green-500 p-2 rounded text-white hover:bg-transparent border hover:text-green-500">Withdraw</a>
+        <a href="{% url "wallet:withdraw" %}" class="bg-green-500 p-2 rounded text-white hover:bg-transparent border hover:text-green-500">Withdraw</a>
         <a href="#" class="bg-green-500 p-2 rounded text-white hover:bg-transparent border hover:text-green-500">Transfer</a>
     </div>
 </div>
-
+</div>
 {% endblock content %}

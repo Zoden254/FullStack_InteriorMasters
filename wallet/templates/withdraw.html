@@ -1,8 +1,19 @@
 {% extends "master.html" %}
 
 {% block title %}Withdraw{% endblock title %}
-{% include "back_home.html" %}
+
 
 {% block content %}
+{% include "back_home.html" %}
 
+<form method='POST' class="bg-white w-fit m-10 p-10 rounded-2xl">
+    {% csrf_token %}
+    <label for="amount">Amount</label><br>
+    <input type="number" name="amount" placeholder="" class="rounded-2xl border p-2 " required><br>
+
+    <label for="password">Password</label><br>
+    <input type="password" autocomplete="one-time-code" placehoder="Account Password" name="password" required class=" p-2 rounded-2xl border"><br>
+
+    <button type="submit" class="bg-green-500 text-white m-2 rounded p-2 float-right">Withdraw</button><br>
+</form>
 {% endblock content %}
