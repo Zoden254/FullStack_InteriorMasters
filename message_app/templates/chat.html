@@ -24,7 +24,7 @@
 
     {% if message.sender == request.user.username %}
         <!--Sender's Messages-->
-        <div class="flex float-right w-full justify-end">
+        <div class="flex float-right  w-full justify-end">
             <p class="float-right p-2 bg-indigo-600 rounded-2xl text-white max-w-55 lg:max-w-100 whitespace-normal wrap-break-word mb-3">{{message.message_content}}
                 <span class="text-end float-right text-sm ml-5">{{ message.time.time }}</span>
             </p>
@@ -34,7 +34,7 @@
 
     {% else %}
         <!--received messages-->
-        <div class="flex float-left w-full">
+        <div class="flex float-left  w-full">
             <img src="{{receiver.profile_pic.url}}" class="size-6 rounded-full mr-2" title="{{ receiver.username }}">
             <p class="float-right bg-gray-400 p-2 rounded-2xl text-white max-w-60  lg:max-w-100 whitespace-normal wrap-break-word mb-3">{{message.message_content}}
                 <span class="text-end float-right text-indigo-500 text-sm ml-5">{{ message.time.time }}</span>

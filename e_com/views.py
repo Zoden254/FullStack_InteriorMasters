@@ -189,3 +189,4 @@ def apply_service(request, service_id):
 def success_page(request):
     return render(request, "success_purchase.html")
 
+

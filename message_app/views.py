@@ -36,6 +36,7 @@ def find_user(request):
     else:
         return render(request, 'find_user.html')
 
+
     
 def message_sent(request, user_number):
     receiver = User.objects.get(user_number=user_number)
@@ -66,3 +67,4 @@ def chat(request, user_number):
             sent.delete()
             received.delete()
     return HttpResponseRedirect(reverse('message_app:sent', args=(user_number,)))
+

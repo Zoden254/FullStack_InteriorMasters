@@ -75,5 +75,5 @@ class ServiceBought(models.Model):
     balance = models.CharField(max_length=15)
 
     def __str__(self):
-        return self.service
+        return self.service.name
     
