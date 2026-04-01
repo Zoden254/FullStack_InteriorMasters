@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'wallet',
     'django.contrib.humanize',
     'django_tailwind_cli',
+    'rest_framework',
+    'api',
 ]
 
 MIDDLEWARE = [

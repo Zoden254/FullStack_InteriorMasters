@@ -23,7 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('e_com.urls')),
     path('messanger/', include('message_app.urls')),
-    path('wallet/', include('wallet.urls'))
+    path('wallet/', include('wallet.urls')),
+    path('api/', include('api.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
