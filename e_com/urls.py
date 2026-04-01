@@ -2,7 +2,9 @@ from .import views
 from django.urls import path
 
 
-app_name = 'e_com'
+app_name = "e_com"
+
+
 urlpatterns = [
     path('', views.home, name='home'),
     path('samples/', views.SamplesList.as_view(), name='samples'),

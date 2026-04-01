@@ -5,7 +5,7 @@ from datetime import datetime
 
 # Create your models here.
 class Service(models.Model):
-    thumbnail = models.ImageField(null=True, blank=True,default='blank.jpeg')
+    thumbnail = models.ImageField(blank=True,default='blank.jpeg')
     name = models.CharField(max_length=50)
     additional_info = models.CharField(default="Your imagination, our plan.", blank=True, max_length=255)
     cost_range = models.CharField(max_length=10, default=0)
