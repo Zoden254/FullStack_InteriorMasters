@@ -10,3 +10,7 @@ venv/
 tailwind.config.js
 .django_tailwind_cli
 tailwindcss.exe
+
+.coverage
+
+htmlcov/
