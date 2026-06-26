@@ -46,6 +46,7 @@ def message_sent(request, user_number):
 
     chat_history = ChatHistory.objects.filter(sender=request.user.username, receiver=receiver).order_by('-time') | ChatHistory.objects.filter(sender=receiver.username, receiver=request.user).order_by('-time')
     
+    #return render(request, "partials/chats.html", {'receiver': receiver, 'chats': chat_history})
     return render(request, 'chat.html', {'receiver': receiver, 'chats': chat_history})
     
 def chat(request, user_number):
@@ -66,5 +67,9 @@ def chat(request, user_number):
             chat_history.save()
             sent.delete()
             received.delete()
-    return HttpResponseRedirect(reverse('message_app:sent', args=(user_number,)))
-
+        chat_history = ChatHistory.objects.filter(sender=request.user.username, receiver=receiver).order_by('-time') | ChatHistory.objects.filter(sender=receiver.username, receiver=request.user).order_by('-time')
+        return render(request, "partials/chats.html", {'receiver': receiver, 'chats': chat_history})
+    
+    return HttpResponseRedirect(reverse("message_app:sent", args=(user_number,)))
+    #return render(request, "partials/chats.html", {'receiver': receiver, 'chats': chat_history})
+    

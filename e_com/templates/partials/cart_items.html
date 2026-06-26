@@ -1,12 +1,4 @@
-{% extends "master.html" %}
 {% load humanize %}
-
-{% block title %}My Cart{% endblock title %}
-
-{% block content %}
-
-{% include "back_home.html" %}
-
 <div class="fixed top-20 text-center w-full">
 {% if messages %}
 {% for message in messages %}
@@ -55,5 +47,3 @@
         {% endfor %}
     </div>
 </div>
-{% include "footer.html" %}
-{% endblock content %}

@@ -27,15 +27,17 @@
                 </svg>
             </span>
         </p>
+        <div id="add_to_cart_button">
         {% if user.is_authenticated %}
             {% if service not in my_cart.item.all %}
-            <a href="{% url "e_com:add_to_cart" service.id %}" class="bg-indigo-600 rounded text-white border p-2 hover:bg-white hover:text-indigo-600">Add to Cart &#128722;</a>
+            <a hx-post="{% url "e_com:add_to_cart" service.id %}" hx-target="#add_to_cart_button" class="bg-indigo-600 rounded text-white border p-2 hover:bg-white hover:text-indigo-600">Add to Cart &#128722;</a>
             {% else %}
             <a href="{% url "e_com:cart_view" %}" class="bg-green-500 text-white p-2 rounded">Item already in Cart✅</a>
             {% endif %}
         {% else %}
             <a href="{% url "e_com:add_to_cart" service.id %}" class="bg-indigo-600 rounded text-white border p-2 hover:bg-white hover:text-indigo-600">Add to Cart &#128722;</a>
         {% endif %}
+        <div>
     </div>
         
 </div>

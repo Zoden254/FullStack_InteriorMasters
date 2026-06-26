@@ -1,6 +1,5 @@
 {% load tailwind_cli %}
-
-
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.freepik.com/512/9346/9346243.png">
     <title>{% block title %}{% endblock title %}</title>
+    <!--<scripts src="{% static "htmx.min.js" %}"></scripts>-->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js" integrity="sha384-H5SrcfygHmAuTDZphMHqBJLc3FhssKjG7w/CeCpFReSfwBWDTKpkzPP8c+cLsK+V" crossorigin="anonymous"></script>
 </head>
-<body class="bg-gray-100 overflow-auto">
+<body class="bg-gray-100 overflow-auto" hx-headers='{"X-CSRFToken" : "{{ csrf_token }}"}'>
     <nav>{% block nav %}{% endblock nav %}</nav>
     {% block content %}
     

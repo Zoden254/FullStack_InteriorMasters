@@ -16,7 +16,7 @@
     </span>
     <span><img src="{{receiver.profile_pic.url}}" class="size-8 m-2 rounded-full"></span> {{ receiver.username }}
 </p> 
-
+<div id="chat-area" hx-post="{% url "message_app:chat" receiver.user_number %}" hx-trigger="every 2s" hx-target="#chat-area">
 <div class="m-10  p-5 rounded-2xl h-90 overflow-auto bg-indigo-200 flex flex-col-reverse">
 
 {% if chats %}
@@ -55,9 +55,10 @@
 </div>
 {% endif %}
 </div>
-
-<form method="POST" action="{% url "message_app:chat" receiver.user_number %}" class="flex mx-15 mb-10">    
-    {% csrf_token %}
+</div>
+<form  hx-post="{% url "message_app:chat" receiver.user_number %}" 
+            hx-target="#chat-area"
+            hx-on::after-request="this.reset()" class="flex mx-15 mb-10">    
     
     <input placeholder="Type here" type="text" name="message_content" class="bg-gray-300 rounded-2xl mr-2 p-1 w-full max-w-100 whitespace-normal wrap-break-word overflow-visible" autocomplete="off"><br>
 

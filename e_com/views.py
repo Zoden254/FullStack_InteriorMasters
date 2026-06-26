@@ -135,7 +135,7 @@ def add_item_to_cart(request, id):
     item_to_cart, created = Cart.objects.get_or_create(user=user)
     item_to_cart.item.add(item)
     messages.success(request, "Item added to Cart successfully.")
-    return HttpResponseRedirect(reverse('e_com:services'))
+    return render(request, "partials/add_to_cart_btn.html")
 
 
 @login_required(login_url='/login/')
@@ -157,8 +157,11 @@ def remove_from_cart(request, name):
     from_service = Service.objects.get(name=name)
     cart = Cart.objects.get(user=user)
     cart.item.remove(from_service)
+    my_cart = Cart.objects.get(user=user)
+    cart_items = my_cart.item.order_by
+    
     messages.info(request, "Item removed from Cart successfully.")
-    return HttpResponseRedirect(reverse('e_com:cart_view'))
+    return render(request, "partials/cart_items.html", {'items' : cart_items})
 
 
 def apply_service(request, service_id):
